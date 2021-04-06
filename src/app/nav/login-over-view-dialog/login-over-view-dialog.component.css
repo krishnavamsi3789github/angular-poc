@@ -1,0 +1,8 @@
+.close-btn{ width: 100%; display: inline-block; }
+.form-inline .card{ margin: auto; }
+.form-inline .form-group .form-control{ width: 100%; }
+.close-btn .btn { width: 35px;float: right; }
+.nav-order { display: flex; flex: 1; padding-top: 0px; }
+.nav-order a { flex: 1; }
+.loginFormButton { flex: 1 1 auto; min-height: 1px; margin: 0px 1.25rem 1.25rem; }
+.card-body .form-group { margin-bottom: 1rem; }

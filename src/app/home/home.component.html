@@ -1,0 +1,26 @@
+<section>
+    <div class="container">
+        <div class="row">
+                   
+                        <div class="product_item col-sm-6 col-xs-12 col-lg-3" *ngFor="let product of products">
+                            <div class="image">
+                                <a href="#"><img class="img-responsive w-100" src="{{ product.img_url }}" alt="dummy1"> </a>
+                            </div>
+                            <div class="purchase-region">
+                                <label>Discount Price: Rs.<b>{{ product.discount }}</b></label>
+                                <div class="purchase-region_item">
+                                    <h5>{{ product.name }}</h5>
+                                </div>
+                                <div class="price">
+                                    <s><span>{{ product.price }}</span></s>
+                                    <span> <b> {{ product.price - product.discount }}</b> </span>
+                                </div>
+                                <div class="cart-action">
+                                    <button type="button" class="btn btn-primary addCart" id="" (click)="addToCart(product)"> Add to cart </button>
+                                </div>
+                            </div>
+                        </div>
+                    
+              </div>
+        </div>
+</section>

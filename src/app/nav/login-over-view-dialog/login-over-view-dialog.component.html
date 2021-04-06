@@ -1,0 +1,106 @@
+<div class="close-btn">
+    <button type= "button" class="btn text-right" (click)="onNoClick()">X</button>
+</div>
+<form class="form-inline my-2 my-lg-0" #signinForm="ngForm" (ngSubmit)="loginSubmit(signinForm)">
+    <div class="card">
+        <div class="card-body" *ngIf="isLoginForm">
+            <div class="form-group col">
+                <label>Email</label>
+                <input type="text" name="email" required [(ngModel)] = "userGroup.email"  #email="ngModel" class="form-control" />
+                <div class="text-danger" *ngIf="email.invalid && isSubmitted">Email is required</div>
+            </div>
+            <div class="form-group col">
+                <label>Password</label>
+                <input type="password" name="password" required [(ngModel)] = "userGroup.password" #password="ngModel" class="form-control" />
+                <div class="text-danger" *ngIf="password.invalid && isSubmitted">Password is required</div>
+            </div>
+            <div class="nav-order">
+                <a class="nav-item" href="#" routerLink="register" (click)="onRegister('register')" routerLinkActive="active" *ngIf="isLoginForm">
+                    Sign Up
+                </a>
+                <a class="nav-item text-lg-right" routerLink="forgetpassword" (click)="onRegister('forgetpassword')" routerLinkActive="active" *ngIf="isForgotPasswordLink">Forgot Password?</a>
+            </div>
+        </div>
+
+        <a class="nav-link" href="#" routerLink="login" (click)="onRegister('login')" routerLinkActive="active" *ngIf="isRegisterForm">
+            Login
+        </a>
+
+        <div class="card-body" *ngIf="isRegisterForm">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Title</label>
+                    <select class="form-control">
+                        <option value=""></option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
+                    </select>
+                    
+                </div>
+                <div class="form-group col-5">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" class="form-control" required [(ngModel)] = "userGroup.firstName"  #firstName="ngModel"/>
+                    <div class="text-danger" *ngIf="firstName.invalid && isSubmitted">First Name is required</div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" class="form-control" required [(ngModel)] = "userGroup.lastName"  #lastName="ngModel"/>
+                    <div class="text-danger" *ngIf="lastName.invalid && isSubmitted">Last Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" required [(ngModel)] = "userGroup.email"  #email="ngModel"/>
+                <div class="text-danger" *ngIf="email.invalid && isSubmitted">Email is required</div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required [(ngModel)] = "userGroup.password"  #password="ngModel"/>
+                    <div class="text-danger" *ngIf="password.invalid && isSubmitted">Password is required</div>
+                </div>
+                <div class="form-group col">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="form-control" required [(ngModel)] = "userGroup.confirmPassword"  #confirmPassword="ngModel"/>
+                    <div class="text-danger" *ngIf="confirmPassword.invalid && isSubmitted">Confirm Password is required</div>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" name="checkboxChecked" id="acceptTerms" class="form-check-input" required [(ngModel)] = "userGroup.checkboxChecked"  #checkboxChecked="ngModel"/>
+                <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                <div class="text-danger" *ngIf="checkboxChecked.invalid && isSubmitted">checkbox is required</div>
+            </div>
+    </div>
+
+    <div class="form-group col" *ngIf="isLoginForm || isRegisterForm">
+        <button class="btn btn-primary loginFormButton" >
+            <span></span>
+            {{ buttontext }}
+        </button>
+    </div>
+
+        <h3 class="card-header" *ngIf="isForgotPasswordForm">Forgot Password</h3>
+        <div class="card-body" *ngIf="isForgotPasswordForm">
+            <form [formGroup]="form" (ngSubmit)="forgotPassword()">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email is invalid</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Submit
+                    </button>
+                    <a routerLink="login" class="btn btn-link" (click)="cancelBtn()">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</form>
