@@ -1,0 +1,72 @@
+<div class="container-fluid">
+                    <div>
+                        <h3 class="card-header" (click)="onRegister('login')">Login</h3>
+                        <h3 class="card-header" (click)="onRegister('register')">Register</h3>
+                    </div>
+                    <form #signinForm="ngForm" (ngSubmit)="loginSubmit(signinForm)">
+                        <div class="card-body" *ngIf="isLoginForm">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" name="email" required [(ngModel)] = "userGroup.email"  #email="ngModel" class="form-control" />
+                                <div *ngIf="email.invalid && isSubmitted">Email is required</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" required [(ngModel)] = "userGroup.password" #password="ngModel" class="form-control" />
+                                <div *ngIf="password.invalid && isSubmitted">Password is required</div>
+                            </div>
+                        </div>
+                        <div class="card-body" *ngIf="isRegisterForm">
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Title</label>
+                                    <select class="form-control">
+                                        <option value=""></option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Miss">Miss</option>
+                                        <option value="Ms">Ms</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="form-group col-5">
+                                    <label>First Name</label>
+                                    <input type="text" name="firstName" class="form-control" required [(ngModel)] = "userGroup.firstName"  #firstName="ngModel"/>
+                                    <div *ngIf="firstName.invalid && isSubmitted">firstName is required</div>
+                                </div>
+                                <div class="form-group col-5">
+                                    <label>Last Name</label>
+                                    <input type="text" name="lastName" class="form-control" required [(ngModel)] = "userGroup.lastName"  #lastName="ngModel"/>
+                                    <div *ngIf="lastName.invalid && isSubmitted">lastName is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" name="email" class="form-control"required [(ngModel)] = "userGroup.email"  #email="ngModel"/>
+                                <div *ngIf="email.invalid && isSubmitted">email is required</div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Password</label>
+                                    <input type="password" name="password" class="form-control" required [(ngModel)] = "userGroup.password"  #password="ngModel"/>
+                                    <div *ngIf="password.invalid && isSubmitted">password is required</div>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Confirm Password</label>
+                                    <input type="password" name="confirmPassword" class="form-control" required [(ngModel)] = "userGroup.confirmPassword"  #confirmPassword="ngModel"/>
+                                    <div *ngIf="confirmPassword.invalid && isSubmitted">confirmPassword is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" name="checkboxChecked" id="acceptTerms" class="form-check-input" required [(ngModel)] = "userGroup.checkboxChecked"  #checkboxChecked="ngModel"/>
+                                <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                                <div *ngIf="checkboxChecked.invalid && isSubmitted">checkbox is required</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">
+                            <span></span>
+                            {{ buttontext }}
+                        </button>
+                        </form>
+    </div>
+    
